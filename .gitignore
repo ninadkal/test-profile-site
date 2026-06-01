@@ -1,0 +1,30 @@
+# 시스템 파일
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 환경 변수
+.env
+.env.local
+.env.*.local
+
+# Node.js (필요시)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 빌드 결과물 (필요시)
+dist/
+build/
+
+# 로컬 파일
+.DS_Store

@@ -1,0 +1,376 @@
+/* 전역 스타일 */
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #8b5cf6;
+    --dark-bg: #0f172a;
+    --light-bg: #FFFFFF;
+    --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Inter', system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+/* 커서 깜빡임 애니메이션 */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* fade-in 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* 스크롤 애니메이션용 클래스 - 나중에 JS에서 추가됨 */
+.fade-in.in-view {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 타이핑 커서 스타일 */
+.typing-cursor {
+    display: inline-block;
+    animation: blink 0.8s step-end infinite;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-left: 1px;
+}
+
+/* 그라디언트 텍스트 */
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-hero {
+    background: linear-gradient(135deg, #6366f1 0%, #a78bfa 55%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 글래스모피즘 카드 */
+.glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08);
+}
+
+.dark .glass-card {
+    background: rgba(30, 41, 59, 0.72);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 카드 hover 리프트 */
+.card-hover {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15), 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dark .card-hover:hover {
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.25), 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 그라디언트 버튼 */
+.btn-gradient {
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.btn-gradient::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.btn-gradient:hover::after {
+    opacity: 1;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* 프로필 이미지 glow 링 */
+.profile-ring {
+    position: relative;
+}
+
+.profile-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    z-index: -1;
+    animation: ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+}
+
+/* 섹션 제목 데코레이터 */
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--gradient-primary);
+}
+
+/* 스킬 아이템 카드 hover */
+.skill-item {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.skill-item:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.18);
+}
+
+/* 스킬 뱃지 스타일 (레거시) */
+.skill-badge {
+    @apply bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-100 dark:border-indigo-800/50;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+}
+
+/* 토스트 알림 애니메이션 */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.toast-notification {
+    animation: slideInUp 0.3s ease-out;
+}
+
+.toast-notification.hide {
+    animation: slideOutDown 0.3s ease-in forwards;
+}
+
+.toast-notification.show {
+    display: block !important;
+}
+
+/* 네비게이션 활성화 상태 */
+.nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 2px;
+}
+
+/* 네비게이션 스크롤 시 배경 및 그림자 */
+#navbar.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark #navbar.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+}
+
+/* 버튼 호버 효과 */
+button:active {
+    transform: scale(0.98);
+}
+
+/* 링크 스타일 */
+a {
+    text-decoration: none;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* 접근성: reduced-motion 존중 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 카드 호버 효과 */
+.hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* 이미지 처리 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 선택 텍스트 스타일 */
+::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dark ::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 다크모드 blue 계열 오버라이드 */
+.dark {
+    --primary-color: #3b82f6;
+    --accent-color: #60a5fa;
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dark .glass-card {
+    background: rgba(15, 23, 42, 0.75);
+    border-color: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.12);
+}
+
+.dark .card-hover:hover {
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2), 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dark .profile-ring::before {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dark .section-title::after {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dark .btn-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.dark .nav-link.active {
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    border-bottom: none;
+}
